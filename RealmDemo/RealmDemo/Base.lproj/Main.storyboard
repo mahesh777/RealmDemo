@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="C35-G6-3Id">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ROBOTO-MEDIUM.TTF">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="idHomeViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="HomeViewController" customModule="RealmDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jxz-Fi-PQl">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="jcA-nD-TC9"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="iUp-EQ-Q77"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Jxz-Fi-PQl" secondAttribute="bottom" id="6pf-2f-3QP"/>
+                            <constraint firstItem="Jxz-Fi-PQl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9gb-C7-b8f"/>
+                            <constraint firstItem="Jxz-Fi-PQl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jkX-cs-Gbx"/>
+                            <constraint firstAttribute="trailing" secondItem="Jxz-Fi-PQl" secondAttribute="trailing" id="py5-Hz-9yp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rbD-kQ-OgU"/>
+                    <connections>
+                        <outlet property="mainTableView" destination="Jxz-Fi-PQl" id="Xug-rX-bM5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1031.25" y="121.47887323943662"/>
+        </scene>
+        <!--Login -->
+        <scene sceneID="h8V-TJ-nKQ">
+            <objects>
+                <viewController storyboardIdentifier="IDLoginVC" id="MKp-tw-H4h" customClass="LoginViewController" customModule="RealmDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pBa-VF-rfw"/>
+                        <viewControllerLayoutGuide type="bottom" id="DVi-CH-4Zv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LGg-kz-XtF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqM-aX-j9Z" userLabel="Login With Email view">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login with Realm Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD8-wy-K82" userLabel="Login Title">
+                                        <rect key="frame" x="48" y="50" width="225" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="6SP-wR-cGK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="21"/>
+                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TKC-Xy-ODO" userLabel="Email Id Text Field">
+                                        <rect key="frame" x="20" y="124" width="280" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="VxG-TE-zzN"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nDc-Z3-7XI" userLabel="Password Text Field">
+                                        <rect key="frame" x="20" y="176" width="280" height="35"/>
+                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzv-7d-uhT" userLabel="Login">
+                                        <rect key="frame" x="20" y="251" width="280" height="40"/>
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.52156862749999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="sfd-Kh-B9A"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="userLoginButtonClicked" destination="MKp-tw-H4h" eventType="touchUpInside" id="69e-Ph-ATH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="TKC-Xy-ODO" firstAttribute="width" secondItem="nDc-Z3-7XI" secondAttribute="width" id="2AH-Vv-XDb"/>
+                                    <constraint firstItem="Dzv-7d-uhT" firstAttribute="top" secondItem="nDc-Z3-7XI" secondAttribute="bottom" constant="40" id="7rU-TA-39D"/>
+                                    <constraint firstItem="TKC-Xy-ODO" firstAttribute="height" secondItem="nDc-Z3-7XI" secondAttribute="height" id="LSM-Uf-CCw"/>
+                                    <constraint firstItem="TKC-Xy-ODO" firstAttribute="top" secondItem="sD8-wy-K82" secondAttribute="bottom" constant="49" id="Lig-Y7-J8p"/>
+                                    <constraint firstItem="TKC-Xy-ODO" firstAttribute="leading" secondItem="hqM-aX-j9Z" secondAttribute="leading" constant="20" id="NGj-Rl-7Ut"/>
+                                    <constraint firstAttribute="trailing" secondItem="TKC-Xy-ODO" secondAttribute="trailing" constant="20" id="lX9-bM-AKj"/>
+                                    <constraint firstItem="nDc-Z3-7XI" firstAttribute="top" secondItem="TKC-Xy-ODO" secondAttribute="bottom" constant="17" id="mwC-pR-KY5"/>
+                                    <constraint firstItem="TKC-Xy-ODO" firstAttribute="trailing" secondItem="nDc-Z3-7XI" secondAttribute="trailing" id="q2p-bc-ah9"/>
+                                    <constraint firstItem="sD8-wy-K82" firstAttribute="top" secondItem="hqM-aX-j9Z" secondAttribute="top" constant="50" id="t8B-aI-PnC"/>
+                                    <constraint firstItem="Dzv-7d-uhT" firstAttribute="leading" secondItem="hqM-aX-j9Z" secondAttribute="leading" constant="20" id="uSP-dp-odR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dzv-7d-uhT" secondAttribute="trailing" constant="20" id="vIl-K2-tE5"/>
+                                    <constraint firstItem="TKC-Xy-ODO" firstAttribute="leading" secondItem="nDc-Z3-7XI" secondAttribute="leading" id="vdt-Mg-i9l"/>
+                                    <constraint firstItem="sD8-wy-K82" firstAttribute="centerX" secondItem="hqM-aX-j9Z" secondAttribute="centerX" id="xy4-xd-fR2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DVi-CH-4Zv" firstAttribute="top" secondItem="hqM-aX-j9Z" secondAttribute="bottom" id="Gs4-JU-MD1"/>
+                            <constraint firstItem="hqM-aX-j9Z" firstAttribute="leading" secondItem="LGg-kz-XtF" secondAttribute="leading" id="PA6-dw-nx8"/>
+                            <constraint firstAttribute="trailing" secondItem="hqM-aX-j9Z" secondAttribute="trailing" id="dAm-ST-gzQ"/>
+                            <constraint firstItem="hqM-aX-j9Z" firstAttribute="top" secondItem="pBa-VF-rfw" secondAttribute="bottom" id="mFC-h9-IRI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login " id="c7e-Hg-ygR"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="TKC-Xy-ODO" id="GoX-E5-SOg"/>
+                        <outlet property="paswordTextField" destination="nDc-Z3-7XI" id="ogA-Gj-ww9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="geU-c2-ngn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5655" y="-237.67605633802816"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="01Q-94-0sm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C35-G6-3Id" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gCn-a4-0Qh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MKp-tw-H4h" kind="relationship" relationship="rootViewController" id="yBu-5O-U67"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FG0-BS-knK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4657.5" y="-237.67605633802816"/>
+        </scene>
+    </scenes>
+</document>
