@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="C35-G6-3Id">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -26,29 +26,47 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jxz-Fi-PQl">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="80" width="414" height="656"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="jcA-nD-TC9"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="iUp-EQ-Q77"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fwl-gg-xgt">
+                                <rect key="frame" x="59.666666666666657" y="28" width="293.66666666666663" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="C6K-Fa-rlp"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Completed"/>
+                                    <segment title="Pending"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentIndexChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="zlm-53-OfT"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Jxz-Fi-PQl" secondAttribute="bottom" id="6pf-2f-3QP"/>
                             <constraint firstItem="Jxz-Fi-PQl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9gb-C7-b8f"/>
-                            <constraint firstItem="Jxz-Fi-PQl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jkX-cs-Gbx"/>
+                            <constraint firstItem="Fwl-gg-xgt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="DeN-no-slp"/>
+                            <constraint firstItem="Fwl-gg-xgt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="59.329999999999998" id="fpK-fb-MtF"/>
+                            <constraint firstItem="Jxz-Fi-PQl" firstAttribute="top" secondItem="Fwl-gg-xgt" secondAttribute="bottom" constant="24" id="ivI-g7-3am"/>
+                            <constraint firstItem="Jxz-Fi-PQl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="jkX-cs-Gbx"/>
                             <constraint firstAttribute="trailing" secondItem="Jxz-Fi-PQl" secondAttribute="trailing" id="py5-Hz-9yp"/>
+                            <constraint firstAttribute="trailing" secondItem="Fwl-gg-xgt" secondAttribute="trailing" constant="60.670000000000002" id="ulm-Y6-tgU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rbD-kQ-OgU"/>
                     <connections>
                         <outlet property="mainTableView" destination="Jxz-Fi-PQl" id="Xug-rX-bM5"/>
+                        <outlet property="selectionSegmentControl" destination="Fwl-gg-xgt" id="rqU-98-uhy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -64,14 +82,14 @@
                         <viewControllerLayoutGuide type="bottom" id="DVi-CH-4Zv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LGg-kz-XtF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqM-aX-j9Z" userLabel="Login With Email view">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login with Realm Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD8-wy-K82" userLabel="Login Title">
-                                        <rect key="frame" x="48" y="50" width="225" height="25"/>
+                                        <rect key="frame" x="95" y="50" width="225" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="6SP-wR-cGK"/>
                                         </constraints>
@@ -80,7 +98,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TKC-Xy-ODO" userLabel="Email Id Text Field">
-                                        <rect key="frame" x="20" y="124" width="280" height="35"/>
+                                        <rect key="frame" x="20" y="124" width="374" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="VxG-TE-zzN"/>
                                         </constraints>
@@ -89,13 +107,13 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nDc-Z3-7XI" userLabel="Password Text Field">
-                                        <rect key="frame" x="20" y="176" width="280" height="35"/>
+                                        <rect key="frame" x="20" y="176" width="374" height="35"/>
                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzv-7d-uhT" userLabel="Login">
-                                        <rect key="frame" x="20" y="251" width="280" height="40"/>
+                                        <rect key="frame" x="20" y="251" width="374" height="40"/>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.52156862749999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="sfd-Kh-B9A"/>

@@ -19,8 +19,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //emailTextField?.text = "sqfos14@jombay.com"
-        //paswordTextField?.text = "test123"
+        emailTextField?.text = "sqfos14@jombay.com"
+        paswordTextField?.text = "test123"
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,6 +105,7 @@ class LoginViewController: UIViewController {
                 GLOBAL.sharedInstance.showAlert(APPLICATION.applicationName, message: downloadError.localizedDescription, actions: nil)
             } else {
                 if let dictionary = feedResponse.responseDict as? Dictionary<String, AnyObject>{
+                    RealmHelper.sharedInstance.clearDB()
                     self.userInfoResponse = UserInfoResponse.init(jsonDict: dictionary["user"] as! Dictionary<String, AnyObject>)
                     
                     RealmHelper.sharedInstance.setUserInfoModel(self.userInfoResponse!)

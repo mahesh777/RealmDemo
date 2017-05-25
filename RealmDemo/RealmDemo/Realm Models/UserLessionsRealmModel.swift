@@ -14,4 +14,9 @@ class UserLessionsRealmModel : Object {
     dynamic var lessionId : String?
     dynamic var status : String?
     dynamic var lessionTitle : String?
+    
+    override static func primaryKey() -> String? {
+        return "lessionId"
+    }
+
 }

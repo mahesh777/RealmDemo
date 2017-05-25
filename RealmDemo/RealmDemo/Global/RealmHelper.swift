@@ -49,12 +49,33 @@ class RealmHelper : NSObject {
         return userInfoRealmModel!
     }
 
+    /*
     public func getUserLessonList(_ userId : String) -> List<UserLessionsRealmModel> {
         let realm = try! Realm()
         let compareUserId = String.init(format: "userId = '%@'", userId) as String
         let userInfoRealmModel = realm.objects(UserInfoRealmModel.self).filter(compareUserId).first
         
         return (userInfoRealmModel?.userLessionList)!
+    }
+     */
+    public func getUserLessonList(_ userId : String, isCompleted:Bool) -> [UserLessionsRealmModel]? {
+        var lessionArray: [UserLessionsRealmModel] = []
+
+        let realm = try! Realm()
+        
+        var statusQuery : String?
+        if isCompleted {
+            statusQuery = "status = 'completed'"
+        } else {
+            statusQuery = "status = 'started'"
+        }
+        
+        let userLessionList = realm.objects(UserLessionsRealmModel.self).filter(statusQuery!)
+        
+        for object in userLessionList{
+            lessionArray += [object]
+        }
+        return lessionArray.count > 0 ? lessionArray : nil
     }
 
     func setUserLession(_ userId : String, userLessonInfoResponse : UserLessionsResponse) -> Void {
@@ -88,6 +109,16 @@ class RealmHelper : NSObject {
         
         
         
+        
+    }
+    
+    public func clearDB() {
+        let realm = try! Realm()
+
+        try! realm.write {
+            realm.deleteAll()
+        }
+
         
     }
 
