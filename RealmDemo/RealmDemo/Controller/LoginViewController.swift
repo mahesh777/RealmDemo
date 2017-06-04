@@ -19,8 +19,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        emailTextField?.text = "sqfos14@jombay.com"
-        paswordTextField?.text = "test123"
+        //emailTextField?.text = "sqfos14@jombay.com"
+        //paswordTextField?.text = "test123"
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,16 +86,13 @@ class LoginViewController: UIViewController {
         UserInfo.sharedInstance.setUserInfoInCache(value: tokenExpiresIn as AnyObject?, key: UserInfoKeys.tokenExpiresIn)
         UserInfo.sharedInstance.setUserInfoInCache(value: tokenType as AnyObject?, key: UserInfoKeys.tokenType)
         UserInfo.sharedInstance.setUserInfoInCache(value: refreshToken as AnyObject?, key: UserInfoKeys.refreshToken)
-        
-        //GLOBAL.sharedInstance.showAlert(APPLICATION.applicationName, message: "Login Successful!", actions: nil)
 
         getUserInfo()
     }
     
     
+    // MARK : Get User Info
     func getUserInfo() {
-        
-        //GLOBAL.sharedInstance.showLoadingIndicatorWithMessage("Loading")
         
         EMReqeustManager.sharedInstance.apiGetUserInfo({           (feedResponse) -> Void in
             
@@ -117,10 +114,9 @@ class LoginViewController: UIViewController {
         })
     }
 
+    // MARK : Get User Lessions
+
     func getUserLessions() {
-        
-        //GLOBAL.sharedInstance.showLoadingIndicatorWithMessage("Loading")
-        
         EMReqeustManager.sharedInstance.apiGetUserLessions({           (feedResponse) -> Void in
             
             GLOBAL.sharedInstance.hideLoadingIndicator()
@@ -132,18 +128,22 @@ class LoginViewController: UIViewController {
                     let userLessionResponse = UserLessionsResponse.init(jsonDict: dictionary["user_profile"] as! Dictionary<String, AnyObject>)
                     
                     RealmHelper.sharedInstance.setUserLession(UserInfo.sharedInstance.getUserDefault(key: UserInfoKeys.userID) as! String, userLessonInfoResponse: userLessionResponse)
-
-                    print(userLessionResponse.userId ?? "0")
                     
                     GLOBAL.sharedInstance.hideLoadingIndicator()
 
-                    let homeVC = self.makeStoryObj(storyboard: storyboard_R1, Identifier: "idHomeViewController") as! HomeViewController
-                    self.pushStoryObj(obj: homeVC, on: self)
-
+                    self.launchHomeScreen()
                 }
             }
             
         })
+    }
+    
+    // MARK : Launch Home Screen
+
+    func launchHomeScreen() {
+        let homeVC = self.makeStoryObj(storyboard: storyboard_R1, Identifier: "idHomeViewController") as! HomeViewController
+        self.pushStoryObj(obj: homeVC, on: self)
+
     }
 }
 

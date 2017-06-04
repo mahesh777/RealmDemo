@@ -14,6 +14,7 @@ class RealmHelper : NSObject {
     //sharedInstance
     static let sharedInstance = RealmHelper()
     
+    // MARK : Set User Info Model
     func setUserInfoModel(_ userInfoResponse : UserInfoResponse) -> Void {
         let realm = try! Realm()
         let userInfoModel = UserInfoRealmModel()
@@ -23,22 +24,13 @@ class RealmHelper : NSObject {
         userInfoModel.mobileNo = userInfoResponse.mobile
         userInfoModel.userName = userInfoResponse.username
         
-        //if (userInfoResponse.companyIds?.count)! > 0 {
-          //  userInfoModel.companyId = userInfoResponse.companyIds?[0]
-        //}
-        
-        //realm.beginWrite()
-        
         try! realm.write {
             realm.add(userInfoModel, update:true)
             try! realm.commitWrite()
         }
-
-        
-        
     }
 
-    
+    // MARK : Get User Info Model
     func getUserInfoModel(_ userId : String) -> UserInfoRealmModel {
         let realm = try! Realm()
         let persons = realm.objects(UserInfoRealmModel.self)
@@ -49,35 +41,22 @@ class RealmHelper : NSObject {
         return userInfoRealmModel!
     }
 
-    /*
-    public func getUserLessonList(_ userId : String) -> List<UserLessionsRealmModel> {
-        let realm = try! Realm()
-        let compareUserId = String.init(format: "userId = '%@'", userId) as String
-        let userInfoRealmModel = realm.objects(UserInfoRealmModel.self).filter(compareUserId).first
-        
-        return (userInfoRealmModel?.userLessionList)!
-    }
-     */
-    public func getUserLessonList(_ userId : String, isCompleted:Bool) -> [UserLessionsRealmModel]? {
+    // MARK : Get User Lession List
+    public func getUserLessonList(_ bodyParameters: [String: AnyObject]?) -> [UserLessionsRealmModel]? {
         var lessionArray: [UserLessionsRealmModel] = []
-
+        let status = bodyParameters?["status"] as! String
         let realm = try! Realm()
-        
-        var statusQuery : String?
-        if isCompleted {
-            statusQuery = "status = 'completed'"
-        } else {
-            statusQuery = "status = 'started'"
-        }
-        
-        let userLessionList = realm.objects(UserLessionsRealmModel.self).filter(statusQuery!)
+        let statusQuery = String.init(format: "status = '%@'", status)
+        let userLessionList = realm.objects(UserLessionsRealmModel.self).filter(statusQuery)
         
         for object in userLessionList{
             lessionArray += [object]
         }
+        
         return lessionArray.count > 0 ? lessionArray : nil
     }
 
+    // MARK : Set User Lession List
     func setUserLession(_ userId : String, userLessonInfoResponse : UserLessionsResponse) -> Void {
         let userInfoModel = getUserInfoModel(userId)
         
@@ -96,30 +75,20 @@ class RealmHelper : NSObject {
                 realm.beginWrite()
                 userInfoModel.userLessionList.append(userLessionsRealmModel)
                 try! realm.commitWrite()
-
                 
                 try! realm.write {
                     realm.add(userInfoModel, update: true)
                     try! realm.commitWrite()
                 }
-
             }
-            //userInfoModel.companyId = userInfoResponse.companyIds?[0]
         }
-        
-        
-        
-        
     }
     
     public func clearDB() {
         let realm = try! Realm()
-
         try! realm.write {
             realm.deleteAll()
         }
-
-        
     }
 
 }

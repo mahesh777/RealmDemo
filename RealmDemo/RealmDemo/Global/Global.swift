@@ -50,6 +50,17 @@ struct EMError{
     static let userInfoKey = "description"
 }
 
+struct UserLessionStatus{
+    static let pending = "started"
+    static let completed = "completed"
+    static let statusKey = "status"
+}
+
+struct LessionStatus{
+    static let completed = 0
+    static let pending = 1
+}
+
 struct CacheConstants {
     static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
     static let isUserLoggedIn = "isUserLoggedIn"

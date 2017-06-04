@@ -18,25 +18,6 @@ class EMJSONReponse {
         self.data = data
         self.response = response
         self.error = error
-        /*
-        //If not error
-        if (self.error == nil) {
-            
-            if let feedDict = data {
-                
-                let baseModel = EMBaseModel.init(jsonDict: feedDict)
-                //If feed retrival is success
-                if self.HTTPResponse.statusCode != 200 {
-                    self.error = NSError(domain:EMError.domain, code: self.HTTPResponse.statusCode, userInfo:[NSLocalizedDescriptionKey:message])
-                } else {
-                    self.error = NSError(domain:EMError.domain, code:7777 , userInfo:[NSLocalizedDescriptionKey:message])
-                }
-            }
-        }
-        else {
-            self.error = NSError(domain:EMError.domain, code:7777 , userInfo:[NSLocalizedDescriptionKey:message])
-        }
-         */
     }
     
     init(error: Error? ,dataDict : NSDictionary ){

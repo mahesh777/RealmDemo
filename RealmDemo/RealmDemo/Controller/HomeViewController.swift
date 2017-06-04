@@ -14,14 +14,16 @@ class HomeViewController: UIViewController , UITableViewDelegate,UITableViewData
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var selectionSegmentControl: UISegmentedControl!
 
-    var userLessionList : [UserLessionsRealmModel]?
+    var userLessionList : [UserLessionsRealmModel] = []
 
+    let homeCellIdentifier = "HomeMainTableViewCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "Home"
         // Do any additional setup after loading the view, typically from a nib.
-        mainTableView.register(UINib(nibName: "HomeMainTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeMainTableViewCell")
+        mainTableView.register(UINib(nibName: "HomeMainTableViewCell", bundle: nil), forCellReuseIdentifier: homeCellIdentifier)
 
         selectionSegmentControl.selectedSegmentIndex = 0
         segmentIndexChanged(sender: selectionSegmentControl)
@@ -34,7 +36,7 @@ class HomeViewController: UIViewController , UITableViewDelegate,UITableViewData
 
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.userLessionList!.count);
+        return (self.userLessionList.count);
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
@@ -43,10 +45,10 @@ class HomeViewController: UIViewController , UITableViewDelegate,UITableViewData
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:HomeMainTableViewCell = mainTableView.dequeueReusableCell(withIdentifier: "HomeMainTableViewCell") as! HomeMainTableViewCell
+        let cell:HomeMainTableViewCell = mainTableView.dequeueReusableCell(withIdentifier: homeCellIdentifier) as! HomeMainTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         
-        let userLessionsRealmModel = self.userLessionList?[indexPath.row] as UserLessionsRealmModel!;
+        let userLessionsRealmModel = self.userLessionList[indexPath.row] as UserLessionsRealmModel!;
         cell.lessonTitleLabel.text = userLessionsRealmModel?.lessionTitle
         
         cell.lessonStatusLabel.text = userLessionsRealmModel?.status
@@ -57,33 +59,45 @@ class HomeViewController: UIViewController , UITableViewDelegate,UITableViewData
     
     @IBAction func segmentIndexChanged(sender:UISegmentedControl)
     {
-        switch sender.selectedSegmentIndex
-        {
-            case 0:
- 
-                if self.userLessionList != nil {
-                    if (self.userLessionList?.count)! > 0 {
-                        self.userLessionList?.removeAll()
-                    }
-                }
-                self.userLessionList = RealmHelper.sharedInstance.getUserLessonList(UserInfo.sharedInstance.getUserDefault(key: UserInfoKeys.userID) as! String, isCompleted: true)
-                self.mainTableView.reloadData()
-
-                break;
-            case 1:
-                
-                if (self.userLessionList?.count)! > 0 {
-                    self.userLessionList?.removeAll()
-                }
-                
-                self.userLessionList = RealmHelper.sharedInstance.getUserLessonList(UserInfo.sharedInstance.getUserDefault(key: UserInfoKeys.userID) as! String, isCompleted: false)
-                self.mainTableView.reloadData()
-                break;
-            default:
-                break;
+        let title = sender.titleForSegment(at: sender.selectedSegmentIndex)
+        let selector = NSSelectorFromString(title!)
+        if responds(to: selector) {
+            clearStack()
+            perform(selector)
+        } else {
+            GLOBAL.sharedInstance.showAlert(APPLICATION.applicationName, message: "Method does not exist!", actions: nil)
+        }
+        
+    }
+    
+    // MARK : Clear List
+    func clearStack()  {
+        if (self.userLessionList.count) > 0 {
+            self.userLessionList.removeAll()
         }
     }
     
+    // MARK : Find Completed Lessions
+    func completed() {
+        let bodyParams: [String: AnyObject] = [UserLessionStatus.statusKey: UserLessionStatus.completed as String as AnyObject]
+        refreshList(bodyParams)
+
+    }
+    
+    // MARK : Find Pending Lessions
+    func pending() {
+        let bodyParams: [String: AnyObject] = [UserLessionStatus.statusKey: UserLessionStatus.pending as String as AnyObject]
+        refreshList(bodyParams)
+    }
+    
+    // MARK : Refresh List
+    func refreshList(_ bodyParameters: [String: AnyObject]?)  {
+        self.userLessionList = RealmHelper.sharedInstance.getUserLessonList(bodyParameters)!
+        self.mainTableView.reloadData()
+        
+    }
+    
+
 }
 
 

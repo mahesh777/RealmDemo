@@ -55,13 +55,6 @@ class EMReqeustManager: NSObject {
         } else {
             actualURL = URL
         }
-        /*
-        var headerParams = [String: String]()
-        if let headers = headers {
-            headerParams = headers
-        }
-        */
-        
         
         var headerParams = [String: String]()
         
@@ -126,8 +119,6 @@ extension EMReqeustManager {
     
     func apiGetUserInfo(_ completionHandler:@escaping requestCompletionHandler) {
         
-        //let bodyParams: [String: String] = [APIRequestKeys.getEmojiRequestType: type as String
-                                            //]
         let bodyParams : [String : String] = [:]
         
         sendRequestWithURL(APIEndPoints.getUserInfoURL(), method: .get, queryParameters: nil, bodyParameters: bodyParams as [String : AnyObject]?, headers: nil, isLoginHeaderRequired: true, completionHandler: completionHandler)

@@ -43,8 +43,8 @@
                                     <constraint firstAttribute="height" constant="28" id="C6K-Fa-rlp"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Completed"/>
-                                    <segment title="Pending"/>
+                                    <segment title="completed"/>
+                                    <segment title="pending"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentIndexChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="zlm-53-OfT"/>
